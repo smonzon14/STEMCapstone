@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learn How to Make a Website</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="nav.js"></script>
+</head>
+<body>
+    <ul id="menu">
+        <li><a href="index.html" class="red menuItem">&lt; Start Here! &gt;</a></li>
+        <li><a href="mtw.html" class="orange menuItem">Making A Website</a></li>
+        <li><a href="3dp.html" class="yellow menuItem">3D Printing</a></li>
+        <li><a href="robots.html" class="green menuItem">Robots</a></li>
+        <li><a href="hacking.html" class="lblue menuItem">H@ck1ng</a></li>
+        <li><a href="contact.html" class="blue menuItem">Contact</a></li>
+    </ul>
+    <div class="sidenav" id="mySidenav">
+        <a href="javascript:toggleNav()" id="closebtn">&#9776;</a>
+        <div id="sideNavItems"></div>
+    </div>
+    <div id="mainText">
+        <div class="title">Make A Website <div style="font-size: 18px;">(From scratch)</div></div>
+        <div class="subtitle">Getting Started</div>
+        <div class="message">Making a website is a lot easier than you might expect. For starters, there is some magical place called Github that allows you to upload your code directly to
+            their servers and make your website live! No need to make a raspberry pi or some other computer serve your website when you can use Github for absolutely FREE. As a matter of fact,
+            I made this website in it's entirety absolutely free, and so could you! Before we jump into things, you should have:
+            <ol>
+                <li>A computer</li>
+                <li>Text editing software (preferably an IDE of some sort):
+                    <ul>
+                        <li>Webstorm</li>
+                        <li>Notepad++</li>
+                        <li>(there are plenty of others)</li>
+                    </ul>
+                </li>
+                <li>A <a href="www.github.com">Github Account</a></li>
+            </ol>
+        </div>
+        <div class="subtitle">Git and Github</div>
+        <div class="message">Git is a very useful tool that allows us to push and pull code onto repositories (projects of code on the Github website). We will be using this
+            to easily update our website code and instantly have it up and ready on the cloud. To download git, go <a href="https://git-scm.com/downloads">here</a> and select your
+            operating system. Once it is installed, let's go ahead and make a repository on Github.</div>
+        <div class="imageDiv"><img src="images/GitStart.JPG" width="700px" alt=""><div class="imageCaption">This is the Github start page, where you will find tons of other code
+            projects. Github is extremely useful when collaborating with other people and editing or running your code on other systems.</div></div>
+        <div class="message">Once you have a Github account, let's go ahead and press the "+" button on the top right corner and click "New Repository".</div>
+        <div class="imageDiv"><img src="images/GitRepo.JPG" width="600px" alt=""><div class="imageCaption">You can name the repository anything you would like. For this example I
+            am naming the repository "MyFirstWebsite".</div></div>
+        <div class="message">After clicking "Create Repository", we can finally set up our initial commit; which is just a fancy way of saying we are updating our code. The difference between
+            a commit and a push is that a commit updates your code "locally" and a push sends all of your code to your Github repository, and is now the new version of the code (There are things called branches
+            which I won't get into for the sake of simplicity).</div>
+        <div class="imageDiv"><img src="images/GitSetRepo.JPG" width="600px" alt=""><div class="imageCaption">There are a couple ways to set up your repository</div></div>
+        <div class="message">One way to set up the repo is by downloading Github Desktop, which is a more user friendly alternative to using the command line. Let's take the fun route.
+         If you are on a Mac, search for "Terminal", and for Windows: "Command Prompt". If using a Mac, we can navigate to our Desktop by using the command "cd /Users/[username]/Desktop". If
+        using a PC with windows, use the command "chdir C:\Users\smonz\Desktop". This is moving our commands to the Desktop, and we will be able to see the repository as soon as the following commands
+        are executed.</div>
+        <div class="message">
+            To make a new folder type the following command:
+            <div class="code">
+                mkdir MyFirstWebsite
+            </div>
+            Now let's move to our directory...
+            <br>If on a PC:
+            <div class="code">
+                chdir MyFirstWebsite
+            </div>
+            If on a Mac:
+            <div class="code">
+                cd MyFirstWebsite
+            </div>
+            Now we can go ahead and copy the code from the "create a new repository on the command line" section (you may be prompted to log in to your Github)
+            <div class="code">
+<pre>echo "# My First Website" >> README.md
+git init
+git add README.md
+git commit -m "initial commit"
+git remote add origin https://github.com/[username]/[repo name].git
+git push -u origin master</pre>
+
+            </div>
+        </div>
+        <div class="subtitle">Adding Files</div>
+        <div class ="message">
+            Now that we've created a repository, we can make a new file called "index.html", which will automatically be the home page for our website. Once you've made that file,
+            let's put some simple html code inside so we get something on our website:
+            <div class="code">
+
+<pre>&lt;!DOCTYPE html>
+&lt;html lang="en">
+&lt;head>
+    &lt;meta charset="UTF-8">
+    &lt;title>Title&lt;/title>
+&lt;/head>
+&lt;body>
+    &lt;div id="someText">Hello World!&lt;/div>
+    &lt;button id="myButton" onclick="alert('Congratulations on your first website!')">Press Me!&lt;/button>
+&lt;style>
+    body{
+        background-color: lightblue;
+        text-align: center;
+    }
+    #someText{
+        padding-top: 200px;
+        font-size: 100px;
+        font-family: Arial, monospace;
+    }
+    #myButton{
+        width: 100px;
+        height: 30px;
+    }
+&lt;/style>
+&lt;/body>
+&lt;/html></pre>
+            </div>
+        </div>
+        <div class ="message">Great! now that we have set up our repository and have given it a home page, we can push our changes to Github and make it a live website.</div>
+        <div class ="message">Let's push our code with the following commands:
+            <div class="code">
+<pre>git add index.html
+git commit -m "Added index.html"
+git push -u origin master</pre>
+
+            </div>
+        </div>
+        <div class="subtitle">Setting Up Github Pages</div>
+        <div class="message">Now that we have some basic html ready for our website, we can go ahead and set up what is called a GitHub Page, which is just an easy way to make web page with a fancy GitHub URL.
+            On GitHub, go to the "Settings" tab on your repository, and scroll down until you see the section "GitHub Pages". If you did the last step correctly, you should be able to select the option "master branch". Once you do that,
+            leave the "Custom Domain" blank for now.
+        </div>
+        <div class="message">Now let's test it out! Github Pages will give you your very own domain name with the format: [username].github.io</div>
+        <div class="imageDiv"><img src="images/WebsiteBasic.JPG" width="600px" alt=""><div class="imageCaption">If you see something like this, congratulations, your website is live! If not, make sure you chose "master branch" in the
+        pages section and not something else.</div></div>
+        <div class="subtitle">Getting a Domain Name</div>
+        <div class="message">First, what exactly is a domain name? Say for example, you have a server with access to the internet, and therefore has an IP Address (Internet Protocol Address). Sure, we could type the IP address
+        into our web browser and it would take us to our website, but who wants to remember a bunch of digits and decimal points when you could have an easy to remember name? This is why we make "domain names", and it makes life
+            a whole lot easier. In order to get a new domain, we will be using <a href="https://www.freenom.com" target="_blank">Freenom</a>, which as the name implies, gives us a free domain for up to a year. We will then use
+            a free DNS service called <a href="https://www.cloudflare.com/" target="_blank">CloudFlare</a> which makes our domain name point to our Github web page.</div>
+        <div class="message">
+
+            <ol>
+                <li>Start by making an account by clicking "Sign In".</li>
+                <li>Once you have made an account, go to "Services" > "Register a New Domain".</li>
+                <li>Now you can type whatever domain name you want the website to have and hope that it is available. If it isn't, try another one.</li>
+                <li>In the free section of the domain listings, click "Get it now" on any of the domain endings. Free domains normally have uncommon endings such as ".tk" or ".ml" because of where the servers are located.</li>
+                <li>Proceed to the checkout.</li>
+                <li>Select the Period dropdown box and select "12 months free", or whatever amount of time you want to have the domain.</li>
+                <li>Now select the "Use DNS" button and then "Use your own DNS" for a place to put our Nameservers.</li>
+                <li>We want our nameservers to point to Cloudflare, so add these to the nameserver section: (leave IP Address blank)<div class="code">angela.ns.cloudflare.com<br>zod.ns.cloudflare.com</div></li>
+                <li>Proceeding to checkout, fill out your information, and "Complete Order".</li>
+            </ol>
+
+        </div>
+        <div class="subtitle">Setting Up DNS Records</div>
+        <div class="message">Now we can proceed with setting up our DNS (Domain Name Server) records on CloudFlare which will tell the internet that [username].github.io is at [your custom domain name]. Lets start by
+            <a href="https://dash.cloudflare.com/sign-up" target="_blank">making a CloudFlare account</a>. Once we are signed in, navigate to the "Add Site" button on the top right corner of your website. Copy and paste
+            the free domain name you chose on FreeNom and paste it into where it asks for your website. Click "Add Site". Hopefully, it brings you to a page that says "Querying Website DNS records" or something of the sort.
+            Press "Continue" and on the next page, select the free plan and "Confirm Plan". If everything has worked out, it should give you an error saying they were unable to scan your DNS records successfully. This is good
+            because it means the domain name has not been used.
+        </div>
+        <div class="imageDiv"><img src="images/AddDNSRecord.JPG" width="800px" alt=""><div class="imageCaption">Notice how there are two "CNAME" records with the same value "[your username].github.io". This is saying that https://[yourdomain].ml and https://www.[yourdomain].ml
+        both point to your Github web page.</div></div>
+        <div class="message">Start by selecting "CNAME" on the dropdown menu where it initially says "A". Type in your custom domain in the "Name" field, then set the "Domain name" field to your GitHub URL. Do this One more time but
+            instead, set the "Name" field to "www". Now go back to your GitHub repository and set the "Custom domain" setting to whatever your domain is. Click "Save" and if all goes as planned, a green message will pop up in
+            the pages section of your settings:</div>
+        <div class="imageDiv"><img src="images/GitHubPages.JPG" width="700px" alt=""><div class="imageCaption">You can also mess around with Github website presets with Github's "Theme Chooser". Enforcing HTTPS is also important
+        if you want to make sure your website traffic is encrypted.</div></div>
+    </div>
+    </div>
+
+</body>
+</html>
