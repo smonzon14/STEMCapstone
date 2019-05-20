@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Block Breaker</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body onload="startGame()">
+<script>
+    //This is where our javascript code will go
+    var obstacles = [];
+    //startGame function will reset everything and give us a canvas to work with
+    function startGame(){
+        game.start();
+        game.clear();
+        obstacles = [];
+        playerObject = new Player(15, "yellow", 30,game.canvas.height/2);
+    }
+    var game = {
+        //creates "canvas" element (where all the action happens)
+        canvas: document.createElement("canvas"),
+        start: function () {
+            //set canvas variables
+            this.canvas.id = "gameField";
+            //set canvas dimensions
+            this.canvas.width = 720;
+            this.canvas.height = 640;
+            //Specify the kind of game we are making
+            this.context = this.canvas.getContext("2d");
+
+            if(this.interval == null) {
+                //If it's not already running, call "updateGameArea" every 0.0001 second
+                this.interval = setInterval(updateGameArea, 0.1);
+                //call "spawnObstacle" every 1.5 seconds
+                this.intervalObstacle = setInterval(spawnObstacle, 1500);
+            }
+            //attach the canvas element to our HTML so we can see it
+            document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+            document.onkeydown = function(){playerObject.velocityY=-1.5;}
+
+        }, clear: function () {
+            //clears the canvas with a black background
+            const ctx = this.context;
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        }
+    };
+    function updateGameArea(){
+        game.clear();
+        for(var o = 0; o < obstacles.length; o++){ //go through every obstacle on screen
+            obstacles[o].x -= 1;
+            if(obstacles[o].x < 0 - obstacles[o].width){
+                obstacles.shift(); //removes first obstacle (the one that will reach the edge first)
+                o--; //because the object is removed from the list, we need to go back one index
+            }
+            obstacles[o].update(); //update the obstacle
+        }
+        playerObject.update(); //update our player
+
+        //run for every frame we display
+    }
+    function Player(size, color, x, y){
+        //size = width = height
+        this.size = size;
+        //position variables
+        this.x = x;
+        this.y = y;
+        this.velocityY = 0;
+        this.update = function(){
+            ctx = game.context;
+            ctx.fillStyle = color;
+            ctx.fillRect(this.x, this.y, this.size, this.size);
+            this.y += this.velocityY;
+            if(this.y <= game.canvas.height - this.size){
+                this.velocityY += 0.02;
+            }else{
+                startGame();
+            }
+
+        }
+    }
+    function Obstacle(holeY, width, color, x){
+        this.holeY = holeY;
+        this.width = width;
+        this.color = color;
+        this.x = x;
+        this.holeSpace = 100;
+        this.update = function(){
+            ctx = game.context;
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x, 0, this.width, game.canvas.height);
+            ctx.fillStyle = "black";
+            ctx.fillRect(this.x, this.holeY, this.width, this.holeSpace);
+            if(this.touchingPlayer()){
+                //if collision is detected, restart the game.
+                startGame();
+            }
+
+        };
+        this.touchingPlayer = function(){
+            var rect1 = playerObject;
+            var rect2 = {x: this.x, y: this.holeY, width: this.width, height: this.holeSpace};
+
+            if(rect1.x + rect1.size > rect2.x && rect1.x < rect2.x + rect2.width){
+                if(rect1.y < rect2.y || rect1.y + rect1.size > rect2.y + rect2.height){
+                    return true
+                }
+            }
+            return false
+        };
+    }
+    function spawnObstacle(){
+        var obstacle = new Obstacle(Math.random() * (game.canvas.height - 200) + 100, 70, "lightgreen", game.canvas.width);
+        obstacles.push(obstacle);
+    }
+</script>
+</body>
+</html>

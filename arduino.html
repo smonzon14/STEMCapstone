@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Here!</title>
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="nav.js"></script>
+
+</head>
+<body>
+<ul id="menu">
+    <li><a href="index.html" class="red menuItem">&lt; Start Here! &gt;</a></li>
+    <li><a href="mtw.html" class="orange menuItem">Making A Website</a></li>
+    <li><a href="games.html" class="yellow menuItem">Web Games</a></li>
+    <li><a href="arduino.html" class="green menuItem">Arduino</a></li>
+    <li><a href="raspberrypi.html" class="lblue menuItem">Raspberry Pi</a></li>
+    <li><a href="contact.html" class="blue menuItem">Contact</a></li>
+</ul>
+
+<div class="sidenav" id="mySidenav">
+    <a href="javascript:toggleNav()" id="closebtn">&#9776;</a>
+    <div id="sideNavItems"></div>
+</div>
+
+<div id="mainText">
+    <div class ="title">Arduino</div>
+    <div class="subtitle">Getting Started</div>
+    <div class="message">An Arduino is a very compact microprocessor we can use to turn code into physical projects such as robots, LCD displays, or practically any other ambition. They are relatively cheap, and come in all shapes, sizes, and processing speeds to match your project needs. Chances are, you have heard of these clever little devices
+        as they have continued to grow in popularity. The "Hello World" program which every developer uses the first time they use an Arduino is probably blinking an LED. It is the easiest thing you can do with an Arduino without getting too technical.</div>
+    <div class="imageDiv"><img src="images/ArduinoUno.JPG" width="100%" alt=""><div class="imageCaption">Arduinos are relatively cheap. The Micro may be slightly cheaper because of it's size, but they normally range from
+    $10-$50 depending on their capabilities. (Amazon or Ebay may have them for cheaper)</div></div>
+    <div class="subtitle">Blinking an LED</div>
+    <div class="message">The easiest and most common example for beginners is the blinking LED program, which turns on and off an LED with set time intervals. Let's go ahead and download the software we will need
+    to program the Arduino <a href="https://www.arduino.cc/en/Main/Software">here</a>. You can choose to code directly from your browser, or you could download the latest IDE software. The choice is yours.</div>
+    <div class="message">After you open the IDE or online editor, create a new file with the following contents:</div>
+    <div class="code">
+        <pre>
+<c>// the setup function runs once when you press reset or power the board</c>
+void setup() {
+  <c>// initialize digital pin LED_BUILTIN as an output.</c>
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+<c>// the loop function runs over and over again forever</c>
+void loop() {
+  digitalWrite(LED_BUILTIN, HIGH);   <c>// turn the LED on (HIGH is the voltage level)</c>
+  delay(1000);                       <c>// wait for a second</c>
+  digitalWrite(LED_BUILTIN, LOW);    <c>// turn the LED off by making the voltage LOW</c>
+  delay(1000);                       <c>// wait for a second</c>
+}
+        </pre>
+    </div>
+    <div class="message">Now, making sure you have selected the correct port and board name in the "Tools" section, press the upload button. In a few seconds, you should see the on-board LED blink on and off. Once you digest the code,
+    feel free to check out the examples Arduino comes with.</div>
+    <div class="subtitle">ESP8266</div>
+    <div class="imageDiv"><img src="images/ESP8266.jpg" width="50%" alt=""><div class="imageCaption">They are super tiny and I suggest you buy them with the pins attached as they are a huge pain to solder on.</div></div>
+    <div class="message">A super cheap and reliable microchip that is being widely used in smart homes and appliances is a small chip called the ESP8266. Given its size, it is capable of being both discrete and connecting to wifi
+    or ever creating a wifi network of its own. Its versatility makes great use in projects like the one I made to detect my family's cell phones when they enter the house (Coming Soon). Again, they are super cheap, especially when you order
+        them from <a href="https://www.aliexpress.com/premium/esp8266.html?SearchText=esp8266&d=y&initiative_id=SB_20190520121722&origin=y&catId=0&isViewCP=y">AliExpress</a> (China). They should be around <c>$2</c> a piece. Once you get one,
+    there is a lot you can do, but make sure you install the Arduino configurations from <a href="https://github.com/esp8266/Arduino#installing-with-boards-manager">here</a>.</div>
+    <div class="subtitle">Other Projects</div>
+    <div class="message">I have made countless projects with Arduinos but here are some of my favorites:</div>
+    <div class="subtitle">Quadruped Robot</div>
+    <div class="message">This little robot was made from 3D printed parts and a heck of a lot of hot glue, electrical tape, and rubber bands. It worked for a while but the motors gave up so it no longer walks. Getting a
+    functioning walking gate for a quadruped robot is no easy task, so I suggest you research. <a href="https://makezine.com/2016/11/22/robot-quadruped-arduino-program/">This is a good place to start</a></div>
+    <div class="imageDiv"><img src="images/quadruped.jpg" width="65%"><div class="imageCaption">I would attach a video but it no longer works because of crappy Servo motors (don't go cheap on servo motors)</div></div>
+    <div class="subtitle">Fam Detector</div>
+    <div class="message">The Fam Detector works by looking through all the packets of information flying between devices and my home router. Once it detects a MAC address of one of my family members, it displays on the LCD screen and
+        sends me a notification using something called "Web Hooks" (Read the last bit in the Raspberry Pi page). The sifting through data is very difficult to understand (as I have yet to figure it out fully myself). <a href="https://github.com/skickar/FriendDetector">Here is the
+            code I based it on</a></div>
+    <div class="imageDiv"><img src="images/FamDetector.jpg" width="55%"><div class="imageCaption">Kinda creepy I know</div></div>
+
+</div>
+
+
+</body>
+</html>

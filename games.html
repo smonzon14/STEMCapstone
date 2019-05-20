@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Here!</title>
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="nav.js"></script>
+
+</head>
+<body>
+<ul id="menu">
+    <li><a href="index.html" class="red menuItem">&lt; Start Here! &gt;</a></li>
+    <li><a href="mtw.html" class="orange menuItem">Making A Website</a></li>
+    <li><a href="games.html" class="yellow menuItem">Web Games</a></li>
+    <li><a href="arduino.html" class="green menuItem">Arduino</a></li>
+    <li><a href="raspberrypi.html" class="lblue menuItem">Raspberry Pi</a></li>
+    <li><a href="contact.html" class="blue menuItem">Contact</a></li>
+</ul>
+
+<div class="sidenav" id="mySidenav">
+    <a href="javascript:toggleNav()" id="closebtn">&#9776;</a>
+    <div id="sideNavItems"></div>
+</div>
+
+<div id="mainText">
+    <div class ="title">Web Games <div style="font-size: 18px;">(Using Javascript)</div> </div>
+    <div class="subtitle">Getting Started</div>
+    <div class="message">Instead of studying during that free block or doing the classwork on your Chromebook, you may catch yourself drifting off into some random web game on the notorious websites like Notdoppler,
+    Coolmathgames, or some other (most likely blocked) video game websites. With your VPN Chrome extension, some magic was done for you to be able to break through the barriers that your school has set up to stop these distractions.
+    IMO, the only thing more fun than playing the games, is making them yourself. The easiest way to do this is with a basic HTML file like the one in the previous tutorial, and a lot of Javascript.</div>
+
+
+    <div class="subtitle">Javascript Snake</div><br>
+    <div><iframe class="frame" src="http://smonzon.tk/" height="800" width="1200"></iframe></div>
+    <div class="message">The actual game can be found <a href="http://smonzon.tk/">here</a>.</div>
+    <div class="subtitle">Block Breaker</div><br>
+    <div><iframe class="frame" src="http://blockbreaker.tk/" height="900" width="800"></iframe></div>
+    <div class="message">The actual game can be found <a href="http://blockbreaker.tk/">here</a>.</div>
+    <div class="subtitle">Flappy Square</div>
+    <div class="message">If you did my last tutorial on making a website, you could do all of these steps and push to GitHub and get your very own live web game like the ones I made above. If not, that's perfectly fine and we can
+    do all of the same things straight from our computer. To get started, make a file called index.html (if you are using the GitHub web page service from the previous tutorial) or game.html or asdf.html, it doesn't really matter.
+    For the sake of simplicity, we will be doing all of the coding in the html file, including javascript, by using the built-in "script" tag used for running other languages inside of out base HTML file. Also, note that "//"
+    is a Javascript comment, and does not affect the functionality of the code, but will help you understand what is going on.</div>
+    <div class="message">Inside of our HTML file, copy and paste:
+        <div class="code"><pre>
+&lt;!DOCTYPE html>
+&lt;html lang="en">
+
+&lt;head>
+    &lt;meta charset="UTF-8">
+    &lt;title>My First Web Game&lt;/title>
+    &lt;link rel="stylesheet" type="text/css" href="main.css">
+&lt;/head>
+
+&lt;body onload="startGame()">
+&lt;script>
+    <c>//This is where our javascript code will go</c>
+    function startGame(){}
+
+&lt;/script>
+&lt;/body>
+&lt;/html>
+    </pre></div>
+
+    </div>
+    <div class="message">Now, between the "script" tags, replace everything inside with the following:
+        <div class="code"><pre>
+var obstacles = [];
+<c>//startGame function will reset everything and give us a canvas to work with</c>
+function startGame(){
+    game.start(); <c>//call start function (we will implement this later)</c>
+    game.clear(); <c>//clear the game screen</c>
+    obstacles = []; <c>//no obstacles yet!</c>
+    playerObject = new Player(15, "yellow", 30,game.canvas.height/2); <c>//We are the player</c>
+}</pre></div>
+    </div>
+    <div class="message">
+        If the code above doesn't make sense yet, good! It shouldn't quite yet. We still need to add some missing variables, functions, and constructors.
+        <ul>
+            <li>Variable: Holds a set value that can sometimes be changed or held constant depending on the phrase we use "var", or "const"</li>
+            <li>Function: Runs once called in the code, and all variables in the function after "return" are forgotten.</li>
+            <li>Constructors: Creates objects that stay in your computer memory so that attributes can be changed.</li>
+        </ul>
+        Underneath the code we just pasted in, we need to add some of the missing functions that we mention in the above code. Let's make our game variable, which is an object that has other functions inside of it:
+        <div class="code"><pre>
+var game = {
+    <c>//creates "canvas" element (where all the action happens)</c>
+    canvas: document.createElement("canvas"),
+    start: function () {
+        <c>//set canvas variables</c>
+        this.canvas.id = "gameField";
+        <c>//set canvas dimensions</c>
+        this.canvas.width = 720;
+        this.canvas.height = 640;
+        <c>//Specify the kind of game we are making</c>
+        this.context = this.canvas.getContext("2d");
+
+        if(this.interval == null) {
+            <c>//If it's not already running, call "updateGameArea" every 0.0001 second</c>
+            this.interval = setInterval(updateGameArea, 0.1);
+            <c>//call "spawnObstacle" every 1.5 seconds</c>
+            this.intervalObstacle = setInterval(spawnObstacle, 1500);
+        }
+        <c>//attach the canvas element to our HTML so we can see it</c>
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        document.onkeydown = function(){playerObject.velocityY=-1.5;};
+
+    }, clear: function () {
+        <c>//clears the canvas with a black background</c>
+        const ctx = this.context;
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+};</pre></div>
+        Each one of these functions will be used by using something like "game.[function]()". Now lets add an update function that we called earlier in "this.interval".
+        <div class="code"><pre>
+function updateGameArea(){
+    game.clear();
+    for(var o = 0; o < obstacles.length; o++){ <c>//go through every obstacle on screen</c>
+        obstacles[o].x -= 1;
+        if(obstacles[o].x < 0 - obstacles[o].width){
+            obstacles.shift(); <c>//removes first obstacle (the one that will reach the edge first)</c>
+            o--; <c>//because the object is removed from the list, we need to go back one index</c>
+        }
+        obstacles[o].update(); <c>//update the obstacle</c>
+    }
+    playerObject.update(); <c>//update our player</c>
+
+    <c>//run for every frame we display</c>
+}
+        </pre></div>
+        This will be called every 0.1 ms and will update each sprite / object that we want to display on screen. Now we should add the actual Player object, and then Obstacle object so the program knows what they are. So for the player
+        object:
+        <div class="code"><pre>
+function Player(size, color, x, y){
+    <c>//size = width = height</c>
+    this.size = size;
+    <c>//position variables</c>
+    this.x = x;
+    this.y = y;
+    this.velocityY = 0;
+    this.update = function(){
+        <c>//this will draw the actual object the way we want it to look</c>
+        ctx = game.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.size, this.size);
+        this.y += this.velocityY;
+        if(this.y <= game.canvas.height - this.size){
+            this.velocityY += 0.02;
+        }else{
+            startGame();
+        }
+
+    }
+}
+        </pre>
+        </div>
+        ... And now the Obstacle object (which we can recreate as many times as we want):
+        <div class="code">
+            <pre>
+function Obstacle(holeY, width, color, x){
+    <c>//dimensions specific to "this" object</c>
+    this.holeY = holeY;
+    this.width = width;
+    this.color = color;
+    this.x = x;
+    this.holeSpace = 100;
+    this.update = function(){
+        ctx = game.context;
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, 0, this.width, game.canvas.height);
+        ctx.fillStyle = "black";
+        ctx.fillRect(this.x, this.holeY, this.width, this.holeSpace);
+        if(this.touchingPlayer()){
+            <c>//if collision is detected, restart the game.</c>
+            startGame();
+        }
+
+    };
+    this.touchingPlayer = function(){
+        var rect1 = playerObject;
+        var rect2 = {x: this.x, y: this.holeY, width: this.width, height: this.holeSpace};
+        <c>//The big if statements look scary but they aren't too bad once you read it over a few times.</c>
+        if(rect1.x + rect1.size > rect2.x && rect1.x < rect2.x + rect2.width){
+            if(rect1.y < rect2.y || rect1.y + rect1.size > rect2.y + rect2.height){
+                return true; <c>//it is touching the player</c>
+            }
+        }
+        return false; <c>//it is not touching the player</c>
+    };
+}
+function spawnObstacle(){
+    var obstacle = new Obstacle(Math.random() * (game.canvas.height - 200) + 100, 70, "lightgreen", game.canvas.width); <c>//create new obstacle object</c>
+    obstacles.push(obstacle); <c>//add obstacle to the list which we will update</c>
+}
+            </pre>
+        </div>
+        Finally, we should be left with a very simple and abstract version of an unnamed popular game.
+
+    </div>
+    <div><iframe class="frame" src="basicHTML.html" height="645" width="725"></iframe></div>
+    <div class="message">
+        I challenge you to mess around with the variables and functions to see if you can improve the game. How would you make a start screen instead of being in a constant loop? Could you add a score counter?
+    </div>
+</div>
+</body>
+</html>

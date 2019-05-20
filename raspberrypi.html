@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Here!</title>
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="nav.js"></script>
+
+</head>
+<body>
+<ul id="menu">
+    <li><a href="index.html" class="red menuItem">&lt; Start Here! &gt;</a></li>
+    <li><a href="mtw.html" class="orange menuItem">Making A Website</a></li>
+    <li><a href="games.html" class="yellow menuItem">Web Games</a></li>
+    <li><a href="arduino.html" class="green menuItem">Arduino</a></li>
+    <li><a href="raspberrypi.html" class="lblue menuItem">Raspberry Pi</a></li>
+    <li><a href="contact.html" class="blue menuItem">Contact</a></li>
+</ul>
+
+<div class="sidenav" id="mySidenav">
+    <a href="javascript:toggleNav()" id="closebtn">&#9776;</a>
+    <div id="sideNavItems"></div>
+</div>
+
+<div id="mainText">
+    <div class ="title">Raspberry π</div>
+    <div class="subtitle">Getting Started with RPi</div>
+    <div class="message">A Raspberry Pi is a pocket sized computer that is widely used in various DIY projects that require slightly more data processing or capabilities than an Arduino. This also means, they are
+    a little more difficult to use, but at the same time can be much more exciting. Unlike an Arduino, you program the Raspberry Pi on the Raspberry Pi itself, rather than using an IDE on your PC. Another method
+    many people use is called SSH, which allows you to control/program the RPi from your computer. </div>
+    <div class="imageDiv"><img src="images/RPiBuy.JPG" alt="" width="100%"><div class="imageCaption">Although you can't buy directly off of their website, you can find a list of sellers on their website and on Amazon.com. I recommend you buy a
+     16 GB Micro SD card and Micro USB power cord separately. Make sure your Micro SD card also comes with an SD adapter so you can upload the boot image from your computer.</div></div>
+    <div class="subtitle">Setup</div>
+    <div class="message">
+        <ol>
+            <li>Download NOOBS (New Out Of Box Software) from <a href="https://downloads.raspberrypi.org/NOOBS_latest">here</a>.</li>
+            <li>Extract the files from the downloaded zip folder.</li>
+            <li>Copy and paste the extracted folder CONTENTS onto the SD card.</li>
+            <li>Wait until the transfer is finished.</li>
+            <li>Safely eject the SD card and insert it into the raspberry Pi</li>
+        </ol>
+        Once you have successfully installed NOOBS, you must plug it into a TV or monitor for setup. Next, you can plug it into any 5V USB port you have on your computer or 5V power supply with a Micro USB connector. If all goes well,
+        you will see a bunch of colors and then a prompt asking what to install. First, select Wifi Networks and connect to your wifi as it is necessary to download the files (also ensure that your keyboard is set to "US" and not "GB", unless that is where you live ;).
+        Then select Raspbian, which is the default Raspberry Pi Operating System, and finally Install. The other operating systems can be useful for other kinds of projects like media servers, retro gaming consoles, etcetera.
+
+    </div>
+    <div class="imageDiv"><img src="images/noobs.png" width=100% alt=""><div class="imageCaption">Your screen may look different from the one in 2017.</div></div>
+    <div class="message">Once everything is finished booting up, we will need to change some things in the Raspberry Pi settings to be able to connect to it via SSH (Secure Shell). Open up a new terminal and type in:
+    <div class="code">sudo raspi-config</div>Keep in mind that the default password is "raspberry" and the username is "pi".</div>
+    <div class="imageDiv"><img src="images/RPiHome.png" width=100% alt=""><div class="imageCaption">This is what your home screen may look like.</div></div>
+    <div class="imageDiv"><img src="images/raspi-config.png" width=100% alt=""><div class="imageCaption">The Raspberry Pi configuration tool</div></div>
+    <div class="message">Go to Interfacing Options > SSH > Enable. Finally, back out and finish - it may require a reboot. Once booted back up, open up a terminal and type in:
+    <div class="code">ifconfig wlan0 | grep "inet addr"</div>
+    Breaking down the command: "wlan0" stands for "Wireless Local Area Network 0", which is our wireless adapter name, "grep" is a second command used to give us all text on the same line as "inet addr".
+    This will give us the RPi's IP address which we will use to connect via SSH. The IP address is found directly after the "inet addr:" text. Now, go back to your PC and download <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTY</a>
+    OR, if you're on a Mac, type in:
+    <div class="code">ssh pi@[RPi IP address] -p 22</div>
+    The -p 22 stands for port 22, which is the default port used for Secure Shells and is very widely used for remote access.
+    </div>
+    <div class="message">If you are on a PC, you need to use PuTTY, so once you have finished downloading it, open it up and you will be brought to a new PuTTY window.</div>
+    <div class="imageDiv"><img src="images/Putty.JPG" width=100% alt=""><div class="imageCaption">Putty is a tool used to SSH into other computers and systems from a windows computer.</div></div>
+    <div class="message">Now, simply type in the Pi's IP address and press open. Make sure you allow the RSA key if it gives you a warning.</div>
+    <div class="imageDiv"><img src="images/PuttyLogin.JPG" width="100%" alt=""><div class="imageCaption">You should see a login something like this.</div></div>
+    <div class="subtitle">Command Line</div>
+    <div class="message">When you first log in to a raspberry pi, by default, your command line will be in the home directory. To navigate into a folder, use the command: <div class="code">cd [name of folder]</div> Or, to back out
+    of one - <div class="code">cd ..</div>If you don't know the folders in your directory, just off the top of your head, use the command -<div class="code">ls</div> which lists all the files and folders inside of the directory you are in.
+    In our home directory, which we can easily go to with the command - <div class="code">cd ~/</div>let's edit a new file called "helloWorld.py" with the command - <div class="code">nano helloWorld.py</div></div>
+    <div class="imageDiv"><img src="images/NewNano.JPG" alt="" width="100%"><div class="imageCaption">This is a new file created from the GNU "nano" text editor, which is the one I usually use.</div></div>
+    <div class="message">Now, inside the new file we just created, we are going to write a simple python program to print out a message that says "Hello [your name]" with the code -
+        <div class="code">
+            <pre>
+name = input("What is your name? ")
+print("Hello " + name + "!")</pre>
+        </div>To close and save the file press [ctrl] + X, press "Y" then enter.
+    </div>
+    <div class="message">Now, back in the command line, to run the file you just created, type in - <div class="code">python helloWorld.py</div>
+    You should now be greeted with an input asking what your name is. Type it in, press enter, and see what happens.</div>
+    <div class="imageDiv"><img src="images/name.JPG" width="200px"><div class="imageCaption">Das it</div></div>
+    <div class="subtitle">Other Projects</div>
+    <div class="message">Here is a little inspiration for your next project:</div>
+    <div class="imageDiv"><img src="images/stairLights.gif" width="300px"> </div>
+    <div class="message">Ultimately, I will leave this project up to you to figure out, but here are a few tips to get you started:
+    <ul>
+        <li>Make an account at <a href="https://www.ifttt.com/" target="_blank">IFTTT</a> and check out "WebHooks". With the simple GET or POST request to a special URL, you can set the action to be a notification on your phone, or even an Alexa alarm</li>
+        <li>Use an LED strip light and take apart the controller (the one the lights are connected to, and instead of triggering the <a href="https://www.google.com/search?q=mosfet&rlz=1C1SQJL_enUS790US790&oq=mosfet&aqs=chrome..69i57j0l5.2140j0j7&sourceid=chrome&ie=UTF-8">MOSFETS</a>
+            with signals from the remote, try something called <a href="https://learn.adafruit.com/adafruit-raspberry-pi-lesson-9-controlling-a-dc-motor/pwm">PWM</a></li>
+        <li>Be careful and try not to electrocute yourself. Always unplug before you solder.</li>
+    </ul>
+    </div>
+</div>
+
+</body>
+</html>

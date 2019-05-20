@@ -2,7 +2,23 @@ body{
     margin: 0;
     color: black;
     font-family: Roboto, monospace;
+}
+.frame {
 
+    margin-bottom: -100px;
+    -ms-zoom: 0.85;
+    -moz-transform: scale(0.85);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.85);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.85);
+    -webkit-transform-origin: 0 0;
+    z-index:-1;
+
+}
+c {
+    font-weight: bold;
+    color: blue;
 }
 .title{
     font-weight: bolder;
@@ -21,6 +37,7 @@ Menu Bar CSS Styling
 */
 
 #menu {
+    z-index: 1;
     top:0;
     font-family: Roboto, serif;
     list-style-type: none;
@@ -40,9 +57,9 @@ Menu Bar CSS Styling
     padding: 15px 25px;
     text-decoration: none;
 
-    transition: background-color .15s ease-in-out;
-    -moz-transition: background-color .15s ease-in-out;
-    -webkit-transition: background-color .15s ease-in-out;
+    transition: background-color .2s linear;
+    -moz-transition: background-color .2s linear;
+    -webkit-transition: background-color .2s linear;
 }
 .red:hover {
     background-color: #ff4146;/* #111;*/
@@ -140,10 +157,15 @@ Main message text
 .imageDiv{
     text-align: center;
     padding: 15px;
+
     background-color: #eaeaea;
     border-radius: 10px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+.imageDiv img{
+    border-style: solid;
+    border-color: #111111;
 }
 .imageCaption{
     font-weight: lighter;

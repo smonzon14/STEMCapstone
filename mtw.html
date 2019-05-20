@@ -11,9 +11,9 @@
     <ul id="menu">
         <li><a href="index.html" class="red menuItem">&lt; Start Here! &gt;</a></li>
         <li><a href="mtw.html" class="orange menuItem">Making A Website</a></li>
-        <li><a href="3dp.html" class="yellow menuItem">3D Printing</a></li>
-        <li><a href="robots.html" class="green menuItem">Robots</a></li>
-        <li><a href="hacking.html" class="lblue menuItem">H@ck1ng</a></li>
+        <li><a href="games.html" class="yellow menuItem">Web Games</a></li>
+        <li><a href="arduino.html" class="green menuItem">Arduino</a></li>
+        <li><a href="raspberrypi.html" class="lblue menuItem">Raspberry Pi</a></li>
         <li><a href="contact.html" class="blue menuItem">Contact</a></li>
     </ul>
     <div class="sidenav" id="mySidenav">
@@ -42,15 +42,15 @@
         <div class="message">Git is a very useful tool that allows us to push and pull code onto repositories (projects of code on the Github website). We will be using this
             to easily update our website code and instantly have it up and ready on the cloud. To download git, go <a href="https://git-scm.com/downloads">here</a> and select your
             operating system. Once it is installed, let's go ahead and make a repository on Github.</div>
-        <div class="imageDiv"><img src="images/GitStart.JPG" width="700px" alt=""><div class="imageCaption">This is the Github start page, where you will find tons of other code
+        <div class="imageDiv"><img src="images/GitStart.JPG" width="100%" alt=""><div class="imageCaption">This is the Github start page, where you will find tons of other code
             projects. Github is extremely useful when collaborating with other people and editing or running your code on other systems.</div></div>
         <div class="message">Once you have a Github account, let's go ahead and press the "+" button on the top right corner and click "New Repository".</div>
-        <div class="imageDiv"><img src="images/GitRepo.JPG" width="600px" alt=""><div class="imageCaption">You can name the repository anything you would like. For this example I
+        <div class="imageDiv"><img src="images/GitRepo.JPG" width="100%" alt=""><div class="imageCaption">You can name the repository anything you would like. For this example I
             am naming the repository "MyFirstWebsite".</div></div>
         <div class="message">After clicking "Create Repository", we can finally set up our initial commit; which is just a fancy way of saying we are updating our code. The difference between
             a commit and a push is that a commit updates your code "locally" and a push sends all of your code to your Github repository, and is now the new version of the code (There are things called branches
             which I won't get into for the sake of simplicity).</div>
-        <div class="imageDiv"><img src="images/GitSetRepo.JPG" width="600px" alt=""><div class="imageCaption">There are a couple ways to set up your repository</div></div>
+        <div class="imageDiv"><img src="images/GitSetRepo.JPG" width="100%" alt=""><div class="imageCaption">There are a couple ways to set up your repository</div></div>
         <div class="message">One way to set up the repo is by downloading Github Desktop, which is a more user friendly alternative to using the command line. Let's take the fun route.
          If you are on a Mac, search for "Terminal", and for Windows: "Command Prompt". If using a Mac, we can navigate to our Desktop by using the command "cd /Users/[username]/Desktop". If
         using a PC with windows, use the command "chdir C:\Users\smonz\Desktop". This is moving our commands to the Desktop, and we will be able to see the repository as soon as the following commands
@@ -129,7 +129,7 @@ git push -u origin master</pre>
             leave the "Custom Domain" blank for now.
         </div>
         <div class="message">Now let's test it out! Github Pages will give you your very own domain name with the format: [username].github.io</div>
-        <div class="imageDiv"><img src="images/WebsiteBasic.JPG" width="600px" alt=""><div class="imageCaption">If you see something like this, congratulations, your website is live! If not, make sure you chose "master branch" in the
+        <div class="imageDiv"><img src="images/WebsiteBasic.JPG" width="100%" alt=""><div class="imageCaption">If you see something like this, congratulations, your website is live! If not, make sure you chose "master branch" in the
         pages section and not something else.</div></div>
         <div class="subtitle">Getting a Domain Name</div>
         <div class="message">First, what exactly is a domain name? Say for example, you have a server with access to the internet, and therefore has an IP Address (Internet Protocol Address). Sure, we could type the IP address
@@ -158,13 +158,17 @@ git push -u origin master</pre>
             Press "Continue" and on the next page, select the free plan and "Confirm Plan". If everything has worked out, it should give you an error saying they were unable to scan your DNS records successfully. This is good
             because it means the domain name has not been used.
         </div>
-        <div class="imageDiv"><img src="images/AddDNSRecord.JPG" width="800px" alt=""><div class="imageCaption">Notice how there are two "CNAME" records with the same value "[your username].github.io". This is saying that https://[yourdomain].ml and https://www.[yourdomain].ml
+        <div class="imageDiv"><img src="images/AddDNSRecord.JPG" width="100%" alt=""><div class="imageCaption">Notice how there are two "CNAME" records with the same value "[your username].github.io". This is saying that https://[yourdomain].ml and https://www.[yourdomain].ml
         both point to your Github web page.</div></div>
         <div class="message">Start by selecting "CNAME" on the dropdown menu where it initially says "A". Type in your custom domain in the "Name" field, then set the "Domain name" field to your GitHub URL. Do this One more time but
             instead, set the "Name" field to "www". Now go back to your GitHub repository and set the "Custom domain" setting to whatever your domain is. Click "Save" and if all goes as planned, a green message will pop up in
             the pages section of your settings:</div>
-        <div class="imageDiv"><img src="images/GitHubPages.JPG" width="700px" alt=""><div class="imageCaption">You can also mess around with Github website presets with Github's "Theme Chooser". Enforcing HTTPS is also important
+        <div class="imageDiv"><img src="images/GitHubPages.JPG" width="100%" alt=""><div class="imageCaption">You can also mess around with Github website presets with Github's "Theme Chooser". Enforcing HTTPS is also important
         if you want to make sure your website traffic is encrypted.</div></div>
+        <div class="message">
+        After that, the website is all yours so do whatever you want with it! (As long as it isn't illegal, which is included in the terms and conditions on FreeNom). If you want to learn more about the backbone of websites (HTML),
+        I suggest you check out <a href="https://w3schools.com/">w3schools.com</a>. They also have a bunch of CSS and Javascript tutorials that explain some of the functions they have to offer. If you want to check out how to put a
+            web game on your site, check out the next tab: <a href="games.html" class="yellow">Web Games</a>.</div>
     </div>
     </div>
 
