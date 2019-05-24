@@ -105,6 +105,7 @@ var game = {
         }
         <c>//attach the canvas element to our HTML so we can see it</c>
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        <c>//When the user presses any key, jump with a speed of 1.5</c>
         document.onkeydown = function(){playerObject.velocityY=-1.5;};
 
     }, clear: function () {
@@ -197,7 +198,7 @@ function spawnObstacle(){
 }
             </pre>
         </div>
-        Finally, we should be left with a very simple and abstract version of an unnamed popular game.
+        Finally, we should be left with a very simple and abstract version of an unnamed popular game. (make sure you click inside the screen and press any key to start jumping)
 
     </div>
     <div><iframe class="frame" src="basicHTML.html" height="645" width="725"></iframe></div>
