@@ -50,6 +50,9 @@ Menu Bar CSS Styling
     box-shadow: 0 5px 30px -10px black;
 
 }
+#menu li {
+    float: left;
+}
 .menuItem {
     display: block;
     color: white;
@@ -60,6 +63,38 @@ Menu Bar CSS Styling
     transition: background-color .2s linear;
     -moz-transition: background-color .2s linear;
     -webkit-transition: background-color .2s linear;
+}
+#quickLinksNav {
+    z-index: -2;
+    top:0;
+    font-family: Roboto, serif;
+    list-style-type: none;
+    margin: 0;
+    padding: 30px;
+    padding-left: 10%;
+    overflow: hidden;
+
+}
+#quickLinksNav li {
+    float: left;
+}
+.quickLink {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-style: solid;
+    border-width: 10px;
+    border-color: #ff4146;
+    margin-left: 40px;
+
+    transition: background-color .2s linear;
+    -moz-transition: background-color .2s linear;
+    -webkit-transition: background-color .2s linear;
+}
+.quickLink img{
+    width: 130px;
 }
 .red:hover {
     background-color: #ff4146;/* #111;*/
@@ -85,13 +120,43 @@ Menu Bar CSS Styling
     background-color: #637aff;/* #111;*/
     color: black;
 }
-#menu li {
-    float: left;
-}
+
 a{
     color: red;
 }
 
+.borange{
+    border-color: #ffbb46;/* #111;*/
+    color: black;
+}
+.byellow{
+    border-color: #fcff58;/* #111;*/
+    color: black;
+}
+.bgreen{
+    border-color: #74ff6a;/* #111;*/
+    color: black;
+}
+.blblue{
+    border-color: #64fdff;/* #111;*/
+    color: black;
+}
+.borange:hover {
+    background-color: #ffbb46;/* #111;*/
+    color: black;
+}
+.byellow:hover {
+    background-color: #fcff58;/* #111;*/
+    color: black;
+}
+.bgreen:hover {
+    background-color: #74ff6a;/* #111;*/
+    color: black;
+}
+.blblue:hover {
+    background-color: #64fdff;/* #111;*/
+    color: black;
+}
 /*
 Side Navigation
 */
